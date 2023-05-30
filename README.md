@@ -116,7 +116,7 @@ def criaCliente():
 
 Nesse primeiro trecho, criamos o socket com as mesmas configurações que o servidor, depois disso é utilizado o Try por que estamos tentanto estabilizar uma conexão com o servidor, se tudo correr bem é imprimido uma mensagem na tela confirmando a conexão, caso algo de errado a função é quebrada é imprimido a mensagem de erro.
 
-Depois que cliente conectar tentaremos receber a lista de arquivos enviada pelo servidor, se lista chegar é armazena em **lista_recebida** onde na próxima linha usando o **Pickle** vamos abrir essa lista que veio de foram achatada. Se isso der certo, o código segue, onde vai imprimir a lista dos arquivos para que o cliente possa escolher. Abaixo da lista terá um input onde o usuário vai digitar o nome do arquivo que ele quer, porém se o nome digitado não estiver na lista o loop abaixo entra em ação e enquanto o nome digitado não estiver na lista o loop continua.
+Depois que cliente conectar tentaremos receber a lista de arquivos enviada pelo servidor, se lista chegar é armazena em **lista_recebida** onde na próxima linha usando o **Pickle** vamos abrir essa lista que veio de forma achatada. Se isso der certo, o código segue, onde vai imprimir a lista dos arquivos para que o cliente possa escolher. Abaixo da lista terá um input onde o usuário vai digitar o nome do arquivo que ele quer, porém se o nome digitado não estiver na lista o loop abaixo entra em ação e enquanto o nome digitado não estiver na lista o loop continua.
 
 Se tudo correr bem, esse nome será enviado para o servidor atrvés do método **send**, usamos o encode para mandar em formato de bits.
 
