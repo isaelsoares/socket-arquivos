@@ -54,7 +54,7 @@ Depois disso, temos um loop infinito que cuidará da recepção dos clientes.
 
 Através do método **accept()** aceitaremos os clientes que estiverem tentando se conectar ao servidor, na linha de baixo esse cliente será colocado na lista de clientes e em seguida será imprimido na tela do servidor o endereço do cliente que se conectou. Mais além faremos uso da dependência **Pickle** para achatar a lista de arquivos e enviar em único fluxo para o cliente usando o método **send()**. 
 
-Quando a lista de arquivos é enviada, inicia a etapa da função **TrataArquivo** que se reponsabiliza por receber o nome do arquivo e encaminhar para a função enviarArquivo os parametros do cliente que pediu e o que ele pediu.
+Quando a lista de arquivos é enviada, inicia a etapa da função **TrataArquivo** que se reponsabiliza por receber o nome do arquivo e encaminhar para a função enviarArquivo os parâmetros do cliente que pediu e o que ele pediu.
 
 ```
         thread = threading.Thread(target = TrataArquivo, args = [cliente])
