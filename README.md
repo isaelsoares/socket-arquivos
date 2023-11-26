@@ -20,7 +20,7 @@ No incío do arquivo server.py teremos duas variáveis globais: **arquivos** e *
 
 A variável **arquivos** armazena os arquivos que estão no mesmo diretório que o server.py, já a variável **clientes** armazena os clientes conectados.
 
-Função **criaServidor()**: Está função é reponsável por criar e incializar o servidor socket para receber conexões de clientes. a função ficou organizada da seguinte forma:
+Função **criaServidor()**: Está função é reponsável por criar e incializar o servidor socket para receber conexões de clientes. A função ficou organizada da seguinte forma:
 
 ```
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -35,9 +35,9 @@ server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 Na primeira linha criamos o socket usando a família de endereços IPv4 **(socket.AF_INET)** e o protocolo TPC **(socket.SOCK_STREAM)**, a escolha do protolo TPC deve-se ao fato de que ele garante que nenhuma parte da mensagem ou arquivo enviado seja perdida pelo caminho.
 
-Ademais, tentamos associar o endereço do servidor a parto 5000 fazendo uso do método **bind()**. Se tudo correr bem, o servidor é iniciado e está pronto para receber conexões, junto a isso criamos um  método listen() para deixar o servidor no modo espera. 
+Ademais, tentamos associar o endereço do servidor a porta 5000 fazendo uso do método **bind()**. Se tudo correr bem, o servidor é iniciado e está pronto para receber conexões, junto a isso criamos um  método listen() para deixar o servidor no modo espera. 
 
-Observação: Utiliza-se Try para que se o servidor não for inciado, temos a garantia que a função **criaServidor()** será quebrada.
+Observação: Foi utilizado a instrução Try para que se o servidor não for iniciado, temos a garantia que a função **criaServidor()** será quebrada.
 
 Depois disso, temos um loop infinito que cuidará da recepção dos clientes.
 
@@ -90,7 +90,7 @@ def enviarArquivo(nomeArquivo, cliente):
 
 ```
 
-A função enviar arquivo inicia com um for que itera sobre os itens na lista clientes para encontrar o cliente correspondente ao objeto de socket fornecido afim de garantir que o arquivo seja enviado para a pessoa cliente certo, nesse verificação também é analisado se o nome de arquivo solicitado se encontra na pasta.  Se as condições forem dadas como verdadeiras então incia o processo onde tentamos enviar o arquivo para o cliente. 
+A função enviar arquivo inicia com um For que itera sobre os itens na lista clientes para encontrar o cliente correspondente ao objeto de socket fornecido afim de garantir que o arquivo seja enviado para a pessoa cliente certo, nesse verificação também é analisado se o nome de arquivo solicitado se encontra na pasta.  Se as condições forem dadas como verdadeiras então incia o processo onde tentamos enviar o arquivo para o cliente. 
 
 O whith open serve para abrir a variável **nomeArquivo** (o arquivo será aberto em modo binário), na próxima linha temos um **file.readlines():** que basicamente vai ler o arquivo linha por linha, toda vez que que uma linha for lida o for vai armazenar essa linha a variével data enviar para o cliente, quando o processo acabar será imprimido que o 'Arquivo foi enviado' e o cliente será desconectado. Em caso de erro o cliente é removido da lista de clientes e mensagem de erro é imprimida na tela do servidor.
 
