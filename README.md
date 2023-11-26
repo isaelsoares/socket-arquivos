@@ -1,7 +1,5 @@
 # socket-arquivos
- Compartilhamento de arquivos com python
-
-socket funcionando: https://youtu.be/CNO4bE3k8lY
+Compartilhamento de arquivos com python
 
 Para o desenvolvimento do projeto foram necessário quatro depêndencias:
 
@@ -9,9 +7,9 @@ Para o desenvolvimento do projeto foram necessário quatro depêndencias:
 
 - Threading: Permite a criação de threads para lidar com várias conexões de clientes.
 
-- os: Oferece funcionalidades relacionadas ao sistema operacional, no caso desse projeto foi usado a listagem de arquivos de um diretório>
+- Os: Oferece funcionalidades relacionadas ao sistema operacional, no caso desse projeto foi usado a listagem de arquivos de um diretório
 
-- pickle: Permite serializar e desserializar objetos Python.
+- Pickle: Permite serializar e desserializar objetos Python.
 
 
 ## Server.py - documentação
