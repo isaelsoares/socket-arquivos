@@ -14,11 +14,11 @@ Para o desenvolvimento do projeto foram necessário quatro depêndencias:
 
 ## Server.py - documentação
 
-No incío do arquivo server.py teremos duas variáveis globais: **arquivos** e **clientes**. 
+No inicío do arquivo server.py teremos duas variáveis globais: **arquivos** e **clientes**. 
 
 A variável **arquivos** armazena os arquivos que estão no mesmo diretório que o server.py, já a variável **clientes** armazena os clientes conectados.
 
-Função **criaServidor()**: Está função é reponsável por criar e incializar o servidor socket para receber conexões de clientes. A função ficou organizada da seguinte forma:
+Função **criaServidor()**: Está função é responsável por criar e inicializar o servidor socket para receber conexões de clientes. A função ficou organizada da seguinte forma:
 
 ```
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -31,7 +31,7 @@ server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         print('\nOcorreu um erro ao iniciar o servidor!\n')
 ```
 
-Na primeira linha criamos o socket usando a família de endereços IPv4 **(socket.AF_INET)** e o protocolo TPC **(socket.SOCK_STREAM)**, a escolha do protolo TPC deve-se ao fato de que ele garante que nenhuma parte da mensagem ou arquivo enviado seja perdida pelo caminho.
+Na primeira linha foi criado o socket usando a família de endereços IPv4 **(socket.AF_INET)** e o protocolo TPC **(socket.SOCK_STREAM)**, a escolha do protolo TPC deve-se ao fato de que ele garante que nenhuma parte da mensagem ou arquivo enviado seja perdida pelo caminho.
 
 Ademais, tentamos associar o endereço do servidor a porta 5000 fazendo uso do método **bind()**. Se tudo correr bem, o servidor é iniciado e está pronto para receber conexões, junto a isso criamos um  método listen() para deixar o servidor no modo espera. 
 
@@ -50,9 +50,9 @@ Depois disso, temos um loop infinito que cuidará da recepção dos clientes.
 
 ```
 
-Através do método **accept()** aceitaremos os clientes que estiverem tentando se conectar ao servidor, na linha de baixo esse cliente será colocado na lista de clientes e em seguida será imprimido na tela do servidor o endereço do cliente que se conectou. Mais além faremos uso da dependência **Pickle** para achatar a lista de arquivos e enviar em único fluxo para o cliente usando o método **send()**. 
+Através do método **accept()** aceitaremos os clientes que estiverem tentando se conectar ao servidor, na linha de baixo esse cliente será colocado na lista de clientes e em seguida será impresso na tela do servidor o endereço do cliente que se conectou. Mais além faremos uso da dependência **Pickle** para achatar a lista de arquivos e enviar em único fluxo para o cliente usando o método **send()**. 
 
-Quando a lista de arquivos é enviada, inicia a etapa da função **TrataArquivo** que se reponsabiliza por receber o nome do arquivo e encaminhar para a função enviarArquivo os parâmetros do cliente que pediu e o que ele pediu.
+Quando a lista de arquivos é enviada, inicia a etapa da função **TrataArquivo** que se responsabiliza por receber o nome do arquivo e encaminhar para a função enviarArquivo os parâmetros do cliente que pediu e o que ele pediu.
 
 ```
         thread = threading.Thread(target = TrataArquivo, args = [cliente])
@@ -68,7 +68,7 @@ def TrataArquivo(cliente):
             break
 ```
 
-Inicia-se uma nova thread para lidar com o nome do arquivo enviado pelo cliente, chamando a função **trataArquivo()**. Nessa função teremos um loop onde recebermos  o nome do arquivo usando o método **recv()** e converemos para string usando método **decode()**, se isso der certo esse valor será armazenado na variável **nomeArquivo** e será passado junto ao parâmetro cliente para a função reponsável por enviar os arquivos **enviarArquivos()**. Caso não seja possível ouvir o cliente, significa que ele não está mais online, então o cliente é removido a lista de clientes e o processo é quebrado.
+Inicia-se uma nova thread para lidar com o nome do arquivo enviado pelo cliente, chamando a função **trataArquivo()**. Nessa função teremos um loop onde recebermos  o nome do arquivo usando o método **recv()** e convertemos para string usando método **decode()**, se isso der certo esse valor será armazenado na variável **nomeArquivo** e será passado junto ao parâmetro cliente para a função responsável por enviar os arquivos **enviarArquivos()**. Caso não seja possível ouvir o cliente, significa que ele não está mais online, então o cliente é removido a lista de clientes e o processo é quebrado.
 
 Por fim, temos a função enviarArquivos().
 
@@ -88,9 +88,9 @@ def enviarArquivo(nomeArquivo, cliente):
 
 ```
 
-A função enviar arquivo inicia com um For que itera sobre os itens na lista clientes para encontrar o cliente correspondente ao objeto de socket fornecido afim de garantir que o arquivo seja enviado para a pessoa cliente certo, nesse verificação também é analisado se o nome de arquivo solicitado se encontra na pasta.  Se as condições forem dadas como verdadeiras então incia o processo onde tentamos enviar o arquivo para o cliente. 
+A função enviar arquivo inicia com um For que itera sobre os itens na lista clientes para encontrar o cliente correspondente ao objeto de socket fornecido a fim de garantir que o arquivo seja enviado para a pessoa cliente certo, nesse verificação também é analisado se o nome de arquivo solicitado se encontra na pasta.  Se as condições forem dadas como verdadeiras, então inicia o processo onde tentamos enviar o arquivo para o cliente. 
 
-O whith open serve para abrir a variável **nomeArquivo** (o arquivo será aberto em modo binário), na próxima linha temos um **file.readlines():** que basicamente vai ler o arquivo linha por linha, toda vez que que uma linha for lida o for vai armazenar essa linha a variével data enviar para o cliente, quando o processo acabar será imprimido que o 'Arquivo foi enviado' e o cliente será desconectado. Em caso de erro o cliente é removido da lista de clientes e mensagem de erro é imprimida na tela do servidor.
+O whith open serve para abrir a variável **nomeArquivo** (o arquivo será aberto em modo binário), na próxima linha temos um **file.readlines():** que basicamente vai ler o arquivo linha por linha. Nesse trecho foi criado utilizado a estrutura de repetição *For* para armazenar o conteúdo de cada linha em uma variável chamada data que é enviada ao cliente, quando o processo acabar e todo o conteúdo tiver sido enviado para o cliente é impresso a mensagem 'Arquivo foi enviado' e o cliente é desconectado automaticamente. Em caso de erro o cliente é removido da lista de clientes e mensagem de erro é impressa na tela do servidor.
 
 
 ## Cliente.py - documentação
@@ -112,11 +112,11 @@ def criaCliente():
         return print('\nNão foi possível se conectar ao servidor!\n')
 ```
 
-Nesse primeiro trecho, criamos o socket com as mesmas configurações que o servidor, depois disso é utilizado o Try por que estamos tentanto estabilizar uma conexão com o servidor, se tudo correr bem é imprimido uma mensagem na tela confirmando a conexão, caso algo de errado a função é quebrada é imprimido a mensagem de erro.
+Nesse primeiro trecho, o socket é criado com as mesmas configurações que o servidor, depois disso é utilizado o Try por que estamos tentanto estabilizar uma conexão com o servidor, se tudo correr bem é impresso uma mensagem na tela confirmando a conexão, caso algo de errado a função é quebrada é imprimido a mensagem de erro.
 
-Depois que cliente conectar tentaremos receber a lista de arquivos enviada pelo servidor, se lista chegar é armazena em **lista_recebida** onde na próxima linha usando o **Pickle** vamos abrir essa lista que veio de forma achatada. Se isso der certo, o código segue, onde vai imprimir a lista dos arquivos para que o cliente possa escolher. Abaixo da lista terá um input onde o usuário vai digitar o nome do arquivo que ele quer, porém se o nome digitado não estiver na lista o loop abaixo entra em ação e enquanto o nome digitado não estiver na lista o loop continua.
+Depois que cliente conectar, tentaremos receber a lista de arquivos enviada pelo servidor, se lista chegar é armazena em **lista_recebida** onde na próxima linha usando o **Pickle** vamos abrir essa lista que veio de forma achatada. Se isso der certo, o código segue, é impresso uma lista dos arquivos disponíveis para o cliente escolher. Abaixo da lista terá um input onde o usuário vai digitar o nome do arquivo que ele quer, porém se o nome digitado não estiver na lista o loop abaixo entra em ação e enquanto o nome digitado não estiver na lista o loop continua.
 
-Se tudo correr bem, esse nome será enviado para o servidor atrvés do método **send**, usamos o encode para mandar em formato de bits.
+Se tudo correr bem, esse nome será enviado para o servidor através do método **send**, usamos o encode para mandar em formato de bits.
 
 ```    
     try:
@@ -137,7 +137,7 @@ Se tudo correr bem, esse nome será enviado para o servidor atrvés do método *
 
 ```
 
-Posteriomente ao código acima teremos um with open composto de loop que vai ficar aguardando e pegando cada pedaço de informação enviado pelo servidor, quando não houver mais dados a serem recebidos o cliente é desconectado.
+Posteriomente ao código acima teremos um with open composto de loop que vai ficar aguardando e pegando cada pedaço de informação enviado pelo servidor, quando não houver mais dados a serem recebidos significa que o arquivo está completo. Depois disso o cliente é desconectado.
 
 ```
     with open(nomeArquivo, 'wb') as file:
